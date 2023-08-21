@@ -11,6 +11,6 @@ COPY ${JAR_FILE} app.jar
 
 # El comando para ejecutar nuestra aplicación Spring Boot
 
-# ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
+ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["java", "-jar", "app.jar"]
