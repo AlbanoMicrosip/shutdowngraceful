@@ -9,8 +9,9 @@ WORKDIR $APP_HOME
 # Copiamos el JAR del proyecto al contenedor
 COPY ${JAR_FILE} app.jar
 
-# El comando para ejecutar nuestra aplicación Spring Boot
+# Copiamos el script docker-entrypoint.sh y lo hacemos ejecutable
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
+# Usamos el archivo docker-entrypoint.sh como nuestro ENTRYPOINT
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["java", "-jar", "app.jar"]
