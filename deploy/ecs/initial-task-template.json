@@ -1,0 +1,82 @@
+{
+  "family": "${TASK_NAME}",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::203593945322:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::203593945322:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "${SERVICE_NAME}",
+      "image": "203593945322.dkr.ecr.us-east-1.amazonaws.com/microsip/ms-articulos-microservice:latest",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "entryPoint": [
+        "docker-entrypoint.sh"
+      ],
+      "command": [
+        "sh",
+        "-c",
+        "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar"      ],
+      "environment": [
+        {
+          "name": "SPRING_PROFILES_ACTIVE",
+          "value": "${SPRING_PROFILES_ACTIVE}"
+        },
+        {
+          "name": "SPRING_CONFIG_IMPORT",
+          "value": "${SPRING_CONFIG_IMPORT}"
+        },
+        {
+          "name": "SPRING_CLOUD_CONFIG_USERNAME",
+          "value": "${SPRING_CLOUD_CONFIG_USERNAME}"
+        },
+        {
+          "name": "SPRING_CLOUD_CONFIG_PASSWORD",
+          "value": "${SPRING_CLOUD_CONFIG_PASSWORD}"
+        },
+        {
+          "name": "SPRING_RABBITMQ_HOST",
+          "value": "${SPRING_RABBITMQ_HOST}"
+        },
+        {
+          "name": "SPRING_RABBITMQ_PORT",
+          "value": "${SPRING_RABBITMQ_PORT}"
+        },
+        {
+          "name": "SPRING_RABBITMQ_USERNAME",
+          "value": "${SPRING_RABBITMQ_USERNAME}"
+        },
+        {
+          "name": "SPRING_RABBITMQ_PASSWORD",
+          "value": "${SPRING_RABBITMQ_PASSWORD}"
+        },
+        {
+          "name": "JAVA_OPTS",
+          "value": "${JAVA_OPTS}"
+        },
+        {
+          "name": "PREFIX_STREAM",
+          "value": "${PREFIX_STREAM}"
+        },
+        {
+          "name": "SERVICE_NAME",
+          "value": "${SERVICE_NAME}"
+        },
+        {
+          "name": "AWS_LOGS_REGION",
+          "value": "${AWS_DEFAULT_REGION}"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "${TASK_CPU}",
+  "memory": "${TASK_MEMORY}"
+}

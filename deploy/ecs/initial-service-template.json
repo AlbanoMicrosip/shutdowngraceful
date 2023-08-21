@@ -1,0 +1,34 @@
+{
+  "cluster": "${CLUSTER_NAME}",
+  "serviceName": "${SERVICE_NAME}",
+  "taskDefinition": "${TASK_NAME}:${TASK_REVISION}",
+  "desiredCount": 1,
+  "launchType": "FARGATE",
+  "platformVersion": "${FARGATE_VERSION}",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 50
+  },
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        ${AWS_SUBNETS}
+      ],
+      "securityGroups": [
+        ${AWS_SECURITY_GROUPS}
+      ],
+      "assignPublicIp": "DISABLED"
+    }
+  },
+  "tags": [
+    {
+      "key": "appco.ambiente",
+      "value": "${TAG_AMBIENTE}"
+    },
+    {
+      "key": "appco.departamento",
+      "value": "servicios_nube"
+    }
+  ],
+  "propagateTags": "SERVICE"
+}

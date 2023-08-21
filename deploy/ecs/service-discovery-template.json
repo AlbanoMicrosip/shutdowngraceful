@@ -1,0 +1,17 @@
+{
+  "Name": "${SERVICE_NAME}",
+  "Description": "${SERVICE_NAME} Service discovery",
+  "DnsConfig": {
+    "NamespaceId": "${NS_ID}",
+    "RoutingPolicy": "${ROUTING_POLICY}",
+    "DnsRecords": [
+      {
+        "Type": "A",
+        "TTL": 60
+      }
+    ]
+  },
+  "HealthCheckCustomConfig": {
+    "FailureThreshold": 1
+  }
+}
