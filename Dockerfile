@@ -15,4 +15,3 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Usamos el archivo docker-entrypoint.sh como nuestro ENTRYPOINT
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["java", "-jar", "app.jar"]
