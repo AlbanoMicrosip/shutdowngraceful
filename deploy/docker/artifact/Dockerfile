@@ -46,7 +46,7 @@ ARG PORT
 ENV PORT ${PORT:-8080}
 VOLUME /tmp
 EXPOSE $PORT
-ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+# ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
+# ENTRYPOINT ["docker-entrypoint.sh"]
 COPY --from=build-stage /home/microsip/microservice-build/build/libs/*.jar /app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
