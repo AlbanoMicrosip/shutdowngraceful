@@ -10,4 +10,5 @@ WORKDIR $APP_HOME
 COPY ${JAR_FILE} app.jar
 
 # El comando para ejecutar nuestra aplicación Spring Boot
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["java", "-jar", "app.jar"]
