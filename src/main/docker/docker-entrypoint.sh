@@ -44,5 +44,4 @@ done
 
 #rm -rf /var/run/rsyslogd.pid
 #service rsyslog start
-
-exec java -jar /app.jar
+exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar
