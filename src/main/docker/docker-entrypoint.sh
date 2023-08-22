@@ -45,4 +45,4 @@ done
 #rm -rf /var/run/rsyslogd.pid
 #service rsyslog start
 
-exec "$@"
+exec java -jar /app.jar
