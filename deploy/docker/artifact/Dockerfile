@@ -46,9 +46,9 @@ VOLUME /tmp
 EXPOSE $PORT
 ADD src/main/docker/docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
-COPY --from=build-stage /home/microsip/microservice-build/build/libs/*.jar /app.jar
+COPY --from=build-stage /home/microsip/microservice-build/build/libs/*.jar app.jar
 RUN sh -c 'touch /app.jar'
-CMD ["sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar"]
+CMD ["java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar"]
 
 
 
