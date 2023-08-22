@@ -10,8 +10,9 @@ WORKDIR $APP_HOME
 COPY ${JAR_FILE} app.jar
 
 # Copiamos el script docker-entrypoint.sh y lo hacemos ejecutable
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY src/main/docker/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Usamos el archivo docker-entrypoint.sh como nuestro ENTRYPOINT
 ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["java", "-jar", "app.jar"]
